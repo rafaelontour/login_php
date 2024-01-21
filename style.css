@@ -9,24 +9,6 @@
 body {
     overflow-x: hidden;
 }
-/* Cabeçalho e Rodapé */
-
-header, footer {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100px;
-    background-color: aqua;
-    margin-bottom: 30px;
-}
-
-footer {
-    background-color: brown;
-    color: white;
-    margin: 50px auto auto auto;
-}
 
 /* Formulário */
 

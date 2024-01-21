@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Cabeçalho</title>
-</head>
-<body>
-    <header>
-        <h1>Sistema - Cabeçalho</h1>
-    </header>
-</body>
-</html>
+
+<header>
+    <h1>Sistema - Cabeçalho</h1>
+    <p>
+        Já tem uma conta?
+        <a href="#">Login</a>
+    </p>
+</header>
+
+<style>
+    header, footer {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100px;
+        background-color: aqua;
+    }
+    
+    header > p {
+        position: absolute;
+        right: 40px;
+    }
+    
+    header > p > a {
+        background-color: blue;
+        padding: 15px 50px;
+        margin: 25px;
+        border-radius: 29px;
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
+</style>
+
