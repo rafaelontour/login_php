@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+/* Cabeçalho e Rodapé */
+
+header, footer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100px;
+    background-color: aqua;
+    margin-bottom: 30px;
+}
+
+footer {
+    background-color: brown;
+    color: white;
+    margin: 50px auto auto auto;
+}
+
+/* Formulário */
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 80%;
+}
+
+form h3 {
+    margin: 35px auto 30px auto;
+    font-size: 45px;
+}
+
+
+form div > input {
+    margin-top: 10px;
+    padding: 12px;
+    
+    border-radius:8px;
+    border: none;
+    box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.697);
+    background-color: #bdb9b9;
+}
+
+
+form fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+    width: 500px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    border: none;
+    box-shadow: 4px 2px 6px rgba(0, 0, 0, 0.573);
+}
+
+form input[type="submit"] {
+    display: block;
+    padding: 12px 30px;
+    margin: 50px auto 40px auto;
+    width: 40%;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(70, 229, 49);
+    box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.638);
+    cursor: pointer;
+}
+
+
+form input[type="submit"]:active {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.638);
+    transform: translate(4px, 2px);
+}
+
+
+form fieldset p {
+    margin-top: 50px;
+    padding: 15px 40px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 2px 2px rgba(0, 0, 0, 0.597);
+}
+
+form fieldset p.aviso {
+    background-color: rgb(255, 61, 61);
+}
+
+form fieldset p.sucesso {
+    background-color: rgb(16, 136, 255);
+}
+
+form fieldset p.ja-cadastrado {
+    background-color: rgb(243, 144, 31);
+}
