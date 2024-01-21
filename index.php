@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?= include("header.php"); ?>
+    <?= include("templates/header.php"); ?>
 
     <form action="processar_formulario.php" method="POST">
         <fieldset>

@@ -1,5 +1,4 @@
-<?php 
-    require("database.php");
+<?php
 
     $db = new Database();
     $PDO = $db -> getConexao();
