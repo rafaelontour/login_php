@@ -41,4 +41,33 @@
 
             return $existe;
         }
+
+        public function verificar_login($email, $senha) {
+            $PDO = $this -> getConexao();
+
+            $sql = "SELECT id, email, senha FROM usuarios WHERE email = ?";
+
+            $stmt = $PDO -> prepare($sql);
+            $stmt -> execute([$email]);
+
+            $linha = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            if ($linha == false) {
+                header("Location: ../sistema/pages/login.php?status=0");
+                die();
+            }
+
+            if (password_verify($senha, $linha["senha"])) {
+                // Redireciona pra página inicial e inicia a sessão
+
+                session_start();
+                $_SESSION["usuario_id"] = $linha["id"];
+                header("Location: ../sistema/pages/inicio.php");
+                die();
+            } else {
+                header("Location: ../sistema/pages/login.php?status=1");
+                die();
+            }
+            
+        }
     }

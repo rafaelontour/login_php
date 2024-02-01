@@ -1,10 +1,6 @@
 
 <header>
     <h1>Sistema - Cabeçalho</h1>
-    <p>
-        Já tem uma conta?
-        <a href="../sistema/pages/login.php">Login</a>
-    </p>
 </header>
 
 <style>
@@ -17,7 +13,6 @@
         height: 100px;
         background-color: aqua;
     }
-    
     
     header > p > a {
         background-color: blue;

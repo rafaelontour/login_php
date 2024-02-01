@@ -37,7 +37,7 @@
 
         $stmt = $PDO -> prepare($sql);
 
-        $stmt -> execute([$nome, $email, $telefone, $senha]);
+        $stmt -> execute([$nome, $email, $telefone, password_hash($senha, PASSWORD_ARGON2I)]);
 
         header('Location: index.php?status=1');
 
