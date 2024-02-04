@@ -15,6 +15,7 @@
             }
         }
 
+
         # Gets
 
         public function getConexao() {
@@ -45,7 +46,7 @@
         public function verificar_login($email, $senha) {
             $PDO = $this -> getConexao();
 
-            $sql = "SELECT id, email, senha FROM usuarios WHERE email = ?";
+            $sql = "SELECT id, nome, email, senha, qtd_anotacoes FROM usuarios WHERE email = ?";
 
             $stmt = $PDO -> prepare($sql);
             $stmt -> execute([$email]);
@@ -62,12 +63,19 @@
 
                 session_start();
                 $_SESSION["usuario_id"] = $linha["id"];
+                $_SESSION["usuario_nome"] = $linha["nome"];
+                $_SESSION["qtd_anotacoes"] = $linha["qtd_anotacoes"];
+                
                 header("Location: ../sistema/pages/inicio.php");
                 die();
             } else {
                 header("Location: ../sistema/pages/login.php?status=1");
                 die();
             }
+            
+        }
+
+        public function inserirAnotacao() {
             
         }
     }
