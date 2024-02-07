@@ -17,8 +17,6 @@
     $linha = $stmt -> fetch(PDO::FETCH_ASSOC);
 
     $qtd_anotacoes = $linha["qtd_anotacoes"];
-
-    echo $qtd_anotacoes;
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +75,7 @@
             <?php 
                 require("../db.php");
 
-                $sql = "SELECT titulo, anotacao, id_anotacao FROM anotacoes WHERE id_usuario = ?";
+                $sql = "SELECT titulo, anotacao, id_anotacao, data_hora FROM anotacoes WHERE id_usuario = ?";
                 
                 $stmt = $PDO -> prepare($sql);
                 $stmt -> execute([$_SESSION["usuario_id"]]);
@@ -90,7 +88,7 @@
                 <?php if ($qtd_anotacoes > 0): ?>
 
                     <div id="mostrar-anotacao">
-                        <h3 class="exibir-anotacao" title="Clique para exibir a anotação"><?php echo $dado["titulo"]?></h3>
+                        <h3 class="exibir-anotacao" title="Clique para exibir a anotação" onclick="exibirAnotacao(<?= htmlspecialchars(json_encode($dado), ENT_QUOTES, 'UTF-8'); ?>)"><?= $dado["titulo"]?></h3>
                         <button id="remover" onclick="window.location.href='../tratar_acao.php?linha=<?= $dado['id_anotacao'] ?>'">
                             <img src="../imagens/remover.svg" alt="Remover anotação" title="Remover anotação">
                         </button>
@@ -102,17 +100,12 @@
 
         <div id="popup-anotacao">
             <div id="fundo-meio">
-                <h3 id="titulo">Título</h3>
-                <p id="data">Data de criação: </p>
-                <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis fuga temporibus explicabo inventore esse nemo, ipsum assumenda corporis nobis. Nam soluta aut hic, recusandae eaque earum nulla eligendi. Totam, quia.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque excepturi totam sint ipsa, rem quae temporibus numquam expedita odit odio! Doloremque rerum, obcaecati ex aliquid temporibus a voluptates deserunt in.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius cupiditate quis optio quod voluptates mollitia explicabo neque quas est dolore! Aperiam corrupti deserunt adipisci quaerat ratione, possimus atque voluptates consequatur.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut assumenda, sapiente ducimus molestiae voluptate veritatis ad accusantium et nisi dolore est totam ipsam corporis saepe quia aspernatur eaque, vel ab.
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, recusandae voluptas quod consequatur suscipit a illo culpa necessitatibus soluta? Cumque officia rerum iusto minus nam accusamus! Ullam cupiditate incidunt suscipit!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta natus, nobis voluptatem nam fugit esse neque. Maiores autem odit quos magnam dolores, dolorem saepe eaque architecto? Fugiat mollitia consequatur sequi?
+                <h3 id="titulo"></h3>
+                <div id="ant">
+                    
                 </div>
                 
+                <p id="data" style="margin-top: 45px;"></p>
             </div>
         </div>
     </div>
@@ -121,17 +114,20 @@
 
 <script>
 
-
-    //document.getElementById('exibir-anotacao').addEventListener('click', function() {
-    //    document.getElementById('popup-anotacao').style.display = 'block';
-    // });
+    function exibirAnotacao(dado) {
+        document.getElementById('titulo').innerHTML = dado["titulo"];
+        document.getElementById('ant').innerHTML = dado['anotacao'];
+        document.getElementById('data').innerHTML = 'Data de criação: ' + dado["data_hora"];
+    }
     
     var elementos = document.getElementsByClassName('exibir-anotacao');
 
-    for (let i = 0; i < elementos.length;i++) {
+    for (let i = 0;i < elementos.length;i++) {
 
         elementos[i].addEventListener('click', function() {
+            
             document.getElementById('popup-anotacao').style.display = 'block';
+            document.getElementById('fundo-meio').style.display = 'block';
         });
     }
 
