@@ -1,7 +1,10 @@
 <?php 
    session_start();
 
-   if (!empty($_POST["ta"]) && !empty($_POST["titulo"])) {
+   if (isset($_GET["linha"])) {
+      echo "funcioou";
+
+   } else if (!empty($_POST["ta"]) && !empty($_POST["titulo"])) {
       require("db.php");
 
       echo "funcionou";

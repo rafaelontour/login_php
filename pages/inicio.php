@@ -165,22 +165,21 @@
                     Clique no ícone abaixo para adicionar.
                 </p>
 
-                <form action="../tratar_acao.php" method="POST">
-                    <div>
-                        <label for="itutulo">Título: </label>
-                        <input type="text" name="titulo" id="ititulo" required>
-                    </div>
-                    
-                    <div>
-                        <p style="margin-top: 5px; margin-bottom: 10px;">Digite aqui sua anotação:</p>
-                        <textarea name="ta" id="ita" cols="30" rows="10" required></textarea>
-                    </div>
-
-                    <input type="submit" value="Adicionar">
-                </form>
-                
-
             <?php endif; ?>
+
+            <form action="../tratar_acao.php" method="POST">
+                <div>
+                    <label for="itutulo">Título: </label>
+                    <input type="text" name="titulo" id="ititulo" required>
+                </div>
+                
+                <div>
+                    <p style="margin-top: 5px; margin-bottom: 10px;">Digite aqui sua anotação:</p>
+                    <textarea name="ta" id="ita" cols="30" rows="10" required></textarea>
+                </div>
+
+                <input type="submit" value="Adicionar">
+            </form>
 
             <button id="adicionar" onclick="popup()" title="Adicionar anotação">
                 +
@@ -189,7 +188,7 @@
             <?php 
                 require("../db.php");
 
-                $sql = "SELECT titulo, anotacao FROM anotacoes WHERE id_usuario = ?";
+                $sql = "SELECT titulo, anotacao, id_anotacao FROM anotacoes WHERE id_usuario = ?";
                 
                 $stmt = $PDO -> prepare($sql);
 
@@ -204,7 +203,7 @@
 
                 <div id="mostrar-anotacao">
                     <h3><?php echo $dado["titulo"]?></h3>
-                    <button id="remover">
+                    <button id="remover" onclick="window.location.href='../tratar_acao.php?linha=<?= $dado['id_anotacao'] ?>'">
                         <img src="../imagens/remover.svg" alt="Remover anotação" title="Remover anotação">
                     </button>
                 </div>
@@ -238,7 +237,6 @@
     }
     
 </script>
-
 
 <?= include("../templates/footer.php") ?>
 </html>
