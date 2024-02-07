@@ -64,7 +64,6 @@
                 session_start();
                 $_SESSION["usuario_id"] = $linha["id"];
                 $_SESSION["usuario_nome"] = $linha["nome"];
-                $_SESSION["qtd_anotacoes"] = $linha["qtd_anotacoes"];
                 
                 header("Location: ../sistema/pages/inicio.php");
                 die();
@@ -75,7 +74,33 @@
             
         }
 
-        public function inserirAnotacao() {
-            
+        public function adicionarAnotacao($titulo, $anotacao, $usuario) : bool {
+            $r = false;
+
+            try {
+                $PDO = $this -> getConexao();
+    
+                $sql = "INSERT INTO anotacoes (titulo, id_usuario, anotacao) VALUES (?, ?, ?)";
+    
+                $stmt = $PDO -> prepare($sql);
+    
+                $stmt -> execute([$titulo, $usuario, $anotacao]);
+
+                session_start();
+
+                $sql = "UPDATE usuarios SET qtd_anotacoes = qtd_anotacoes + 1 WHERE id = ?";
+
+                $stmt = $PDO -> prepare($sql);
+
+                $stmt -> execute([$usuario]);
+
+                $r = true;
+                
+            } catch(PDOException $e) {
+                $r = false;
+                echo "Erro: " . $e -> getMessage();
+            }
+
+            return $r;
         }
     }

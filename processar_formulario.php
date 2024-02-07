@@ -16,8 +16,9 @@
     }
 
     try {
+        
         include("classes/database.php");
-        include("includes/db.php");
+        include("db.php");
 
         $nome = $_POST["nome"];
         $email = $_POST["email"];

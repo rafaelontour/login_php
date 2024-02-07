@@ -1,6 +1,6 @@
 <?php 
 
-    require("includes/db.php");
+    require("db.php");
 
     $email = $_POST['email'];
     $senha = $_POST['senha'];
