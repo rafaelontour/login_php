@@ -17,6 +17,14 @@
     $linha = $stmt -> fetch(PDO::FETCH_ASSOC);
 
     $qtd_anotacoes = $linha["qtd_anotacoes"];
+
+    if (isset($_GET["removeu"])) {
+        if ($_GET["removeu"]) {
+            echo "<script>alert('Anotação removida com sucesso!');</script>";
+        } else {
+            echo "<script>alert('Falha ao remover anotação! Tente novamente.');</script>";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -101,10 +109,7 @@
         <div id="popup-anotacao">
             <div id="fundo-meio">
                 <h3 id="titulo"></h3>
-                <div id="ant">
-                    
-                </div>
-                
+                <div id="ant"></div>
                 <p id="data" style="margin-top: 45px;"></p>
             </div>
         </div>
